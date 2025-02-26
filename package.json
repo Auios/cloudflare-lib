@@ -1,0 +1,31 @@
+{
+  "name": "@auios/cloudflare-lib",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [
+    "typescript",
+    "cloudflare",
+    "pages",
+    "database",
+    "d1",
+    "workers",
+    "kv",
+    "r2",
+    "cloudflare-lib"
+  ],
+  "author": "Connor O'Connor",
+  "license": "ISC",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p src/tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250224.0",
+    "typescript": "^5.8.2"
+  }
+}
