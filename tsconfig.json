@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     /* Base Options */
-    "target": "ES2024",
-    "module": "CommonJS",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "moduleDetection": "force",
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -14,13 +15,11 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "noImplicitAny": true,
-    "allowJs": false,
     "isolatedModules": true,
-    "allowImportingTsExtensions": false,
 
     /* Transpilation */
     "outDir": "dist",
-    "rootDir": ".",
+    "rootDir": "src",
     "sourceMap": true,
     // "noEmit": true,
 
@@ -28,10 +27,10 @@
     "declaration": true,
 
     /* Path Aliases */
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./*"]
+    },
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
