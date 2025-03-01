@@ -1,6 +1,6 @@
 {
   "name": "@auios/cloudflare-lib",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "keywords": [
     "typescript",
@@ -20,6 +20,9 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "publish": "npm publish --access public",
