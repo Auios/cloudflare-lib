@@ -1,6 +1,6 @@
 {
   "name": "@auios/cloudflare-lib",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "",
   "keywords": [
     "typescript",
@@ -21,7 +21,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -p src/tsconfig.json",
+    "build": "tsc",
+    "publish": "npm publish --access public",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {

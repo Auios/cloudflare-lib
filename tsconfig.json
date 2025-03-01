@@ -1,38 +1,38 @@
 {
   "compilerOptions": {
     /* Base Options */
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "target": "ES2024",
+    "module": "CommonJS",
     "moduleDetection": "force",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
 
-    /* Transpilation */
-    "outDir": "../dist",
-    "rootDir": ".",
-    "sourceMap": true,
-    "noEmit": false,
-
     /* Strictness */
+    "strictNullChecks": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
+    "noImplicitAny": true,
     "allowJs": false,
     "isolatedModules": true,
-    "verbatimModuleSyntax": true,
     "allowImportingTsExtensions": false,
+
+    /* Transpilation */
+    "outDir": "dist",
+    "rootDir": ".",
+    "sourceMap": true,
+    // "noEmit": true,
 
     /* Library Options */
     "declaration": true,
-    "declarationMap": true,
 
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["./**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
