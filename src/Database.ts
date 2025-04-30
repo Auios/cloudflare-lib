@@ -38,14 +38,20 @@ class Database {
       .first<T>();
   }
 
-  async fetch<T>(table: string, conditions?: Partial<T>, limit?: number): Promise<T[] | null> {
+  async fetch<T>(
+    table: string,
+    conditions?: Partial<T>,
+    limit?: number,
+  ): Promise<T[] | null> {
     let whereClause = "";
     let values: unknown[] = [];
 
     if (conditions && Object.keys(conditions).length > 0) {
       const columns = Object.keys(conditions);
       values = Object.values(conditions);
-      whereClause = ` WHERE ${columns.map((column) => `${column} = ?`).join(" AND ")}`;
+      whereClause = ` WHERE ${
+        columns.map((column) => `${column} = ?`).join(" AND ")
+      }`;
     }
 
     const limitClause = limit ? ` LIMIT ${limit}` : "";
@@ -55,22 +61,35 @@ class Database {
 
   async insert<T>(table: string, data: Partial<T>): Promise<T | null> {
     const columns = Object.keys(data);
-    const values = Object.values(data);
+    const values = Object.values(data).map((value) =>
+      typeof value === "object" && value !== null
+        ? JSON.stringify(value)
+        : value
+    );
     const placeholders = columns.map(() => "?").join(", ");
-    const sql = /*sql*/ `INSERT INTO ${table} (${columns.join(", ")}) VALUES (${placeholders}) RETURNING *`;
+    const sql = /*sql*/ `INSERT INTO ${table} (${
+      columns.join(", ")
+    }) VALUES (${placeholders}) RETURNING *`;
     return await this.first<T>(sql, values);
   }
 
-  async update<T>(table: string, data: Partial<T>, conditions: Partial<T>): Promise<T[]> {
+  async update<T>(
+    table: string,
+    data: Partial<T>,
+    conditions: Partial<T>,
+  ): Promise<T[]> {
     const setColumns = Object.keys(data);
     const setValues = Object.values(data);
     const setClause = setColumns.map((column) => `${column} = ?`).join(", ");
 
     const conditionColumns = Object.keys(conditions);
     const conditionValues = Object.values(conditions);
-    const whereClause = conditionColumns.map((column) => `${column} = ?`).join(" AND ");
+    const whereClause = conditionColumns.map((column) => `${column} = ?`).join(
+      " AND ",
+    );
 
-    const sql = `UPDATE ${table} SET ${setClause} WHERE ${whereClause} RETURNING *`;
+    const sql =
+      `UPDATE ${table} SET ${setClause} WHERE ${whereClause} RETURNING *`;
     const params = [...setValues, ...conditionValues];
 
     return await this.all<T>(sql, params);
