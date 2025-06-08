@@ -1,6 +1,6 @@
 {
   "name": "@auios/cloudflare-lib",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "keywords": [
     "typescript",
@@ -25,13 +25,20 @@
   ],
   "scripts": {
     "update": "npx npm-check-updates -u",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
     "build": "tsc",
+    "prepublishOnly": "npm run build",
     "release": "npm publish --access public",
-    "prepublishOnly": "npm run build"
+    "test": "node --import tsx --test __tests__/**/*.test.ts"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250607.0",
+    "@types/node": "^22.15.30",
+    "dotenv": "^16.5.0",
     "npm-check-updates": "^18.0.1",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   }
 }
