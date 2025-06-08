@@ -30,7 +30,7 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250430.0",
+    "@cloudflare/workers-types": "^4.20250607.0",
     "npm-check-updates": "^18.0.1",
     "typescript": "^5.8.3"
   }
